@@ -1,0 +1,82 @@
+# class University(object):
+#     def __init__(self,u_name) -> None:
+#         self.univ_name=u_name
+#         print(f"(classuniv) The name of the university is {self.univ_name}")
+
+# class Course(University):
+#     def __init__(self, u_name,c_name) -> None:
+#         self.course=c_name
+#         self.university=u_name
+#         University.__init__(self,u_name)
+#         print(f"(classcourse) the course is {self.course}, university name is {self.university}")
+#         # return super().show_detail(u_name)
+
+# class Branch(University):
+#     def __init__(self, u_name,b_name) -> None:
+#         self.university=u_name
+#         self.branch=b_name
+#         University.__init__(self,u_name)
+#         print(f"(classbranch)  branch is {self.branch} and university is{self.university}")
+#         # return super().show_detail(u_name)
+
+# class Student(Course,Branch):
+#     def __init__(self,u_name,c_name,b_name,s_name) -> None:
+#         self.university=u_name
+#         self.student_name=s_name
+#         self.course=c_name
+#         self.branch=b_name
+#         Course.__init__(self,u_name,c_name)
+#         Branch.__init__(self,u_name,b_name)
+#         print(f"Student of branch: \n\tstudent: {self.student_name} \n\tbranch: {self.branch} \n \t University: {self.university} \nstudent of class course: \n\t student: {self.student_name} \n\t course: {self.course} \n\t University: {self.university}")
+#         # return super().show_detail(u_name, c_name)
+
+# class Faculty(Branch):
+#     def __init__(self, u_name,b_name,f_name) -> None:
+#         self.faculty_name=f_name
+#         self.university=u_name
+#         self.branch=b_name
+#         Branch.__init__(self,u_name,b_name)
+#         print(f"(facultyclass) faculty: {self.faculty_name}, branch: {self.branch} , university: {self.university}")
+#         # super().__init__(u_name, b_name)
+# f1=Faculty("Pokhariya University","Biratnagar","Computer-Engineering")
+
+# s1=Student("Pokhariya University","Computer-Engineering","Biratnagar","Abhishek Mehta")
+# # s1.show_detail()
+
+
+class University:
+    def __init__(self, u_name) -> None:
+        self.university_name = u_name
+        print(f"(Class University) The name of the university is {self.university_name}")
+
+class Course(University):
+    def __init__(self, u_name, c_name) -> None:
+        self.course = c_name
+        University.__init__(self, u_name)
+        print(f"(Class Course) The course is {self.course}, university name is {self.university_name}")
+
+class Branch(University):
+    def __init__(self, u_name, b_name) -> None:
+        self.branch = b_name
+        University.__init__(self, u_name)
+        print(f"(Class Branch) Branch is {self.branch} and university is {self.university_name}")
+
+class Student(Course, Branch):
+    def __init__(self, u_name, c_name, b_name, s_name) -> None:
+        Course.__init__(self, u_name, c_name)
+        Branch.__init__(self, u_name, b_name)
+        self.student_name = s_name
+        print(f"(Class Student) Student: {self.student_name}, Branch: {self.branch}, University: {self.university_name}")
+
+class Faculty(Branch):
+    def __init__(self, u_name, b_name, f_name) -> None:
+        self.faculty_name = f_name
+        Branch.__init__(self, u_name, b_name)
+        print(f"(Class Faculty) Faculty: {self.faculty_name}, Branch: {self.branch}, University: {self.university_name}")
+
+# Example usage:
+f1 = Faculty("Pokhariya University", "Biratnagar", "Computer-Engineering")
+s1 = Student("Pokhariya University", "Computer-Engineering", "Biratnagar", "Abhishek Mehta")
+
+f3 = Faculty("PESU","MCA","VEENA")
+s2= Student("MCA", "CS","bca","avc")

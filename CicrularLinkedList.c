@@ -1,0 +1,79 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+    int data;
+    struct node *next;
+};
+
+struct node* addtoempty(int data)
+{
+    struct node* temp = malloc(sizeof(struct node));
+    temp->data = data;
+    temp->next = temp;
+    return temp;
+}
+
+struct node* addAtBeg(struct node* tail, int data)
+{
+    struct node* newP = malloc(sizeof(struct node));
+    newP->data = data;
+    newP->next = tail->next;
+    tail->next = newP;
+    return tail;
+}
+
+struct node* addAtEnd(struct node* tail, int data)
+{
+    struct node* newP = malloc(sizeof(struct node));
+    newP->data = data;
+    newP->next = tail->next;
+    tail->next = newP;
+    tail = tail->next;
+}
+
+void print(struct node* tail)
+{
+    struct node* p = tail->next;
+    do
+    {
+        printf("%d ", p->data);
+        p = p->next;
+    }while(p != tail->next);
+}
+
+struct node* addAfterPos(struct node* tail, int data, int pos)
+{
+    struct node* p = tail->next;
+    struct node* newP = malloc(sizeof(struct node));
+    newP->data = data;
+    newP->next = NULL;
+    while(pos > 1)
+    {
+        p = p->next;
+        pos--;
+    }
+    newP->next = p->next;
+    p->next = newP;
+    if(p==tail)
+    {
+        newP->next = tail->next;
+        tail->next = newP;
+        tail = tail->next;
+        return tail;
+    }
+    return tail;
+}
+
+int main()
+{
+    struct node* tail;
+    tail = addtoempty(20);
+    tail = addAtBeg(tail, 55);
+    tail = addAtEnd(tail, 99);
+    tail = addAfterPos(tail,45,3);
+    print(tail);
+    return 0;
+    
+}
